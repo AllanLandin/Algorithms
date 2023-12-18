@@ -43,18 +43,50 @@ exports.selectionSort = function(array){
     return array;
 }
 
-exports.insertionSort = function(array){
+module.exports.insertionSort = function(array){
     const {length} = array;
     let temp;
+
     for (let i = 1; i < length; i++){
-        let j = i
+        let j = i;
         temp = array[i];
-        
-        while(j > 0 && (array[j - 1] > temp)){
+
+        while (j > 0 && (array[j - 1] > temp)){
             array[j] = array[j - 1]
-            j--;
+            j--
         }
         array[j] = temp
     }
     return array;
+}
+
+//O(n log n)
+module.exports.mergeSort = function(array){
+    const {length} = array;
+    if (length > 1){
+        let middle = Math.floor(length / 2);
+
+        let left = this.mergeSort(array.slice(0, middle))
+        let right = this.mergeSort(array.slice(middle, length));
+        array = merge(left, right)
+    }
+    return array;
+}
+
+
+function merge(left, right){
+    let l = 0;
+    let r = 0;
+    let result = [];
+
+    while (l < left.length && r < right.length){
+        if (left[l] < right[r]){
+            result.push(left[l])
+            l++;
+        } else{
+            result.push(right[r])
+            r++;
+        }
+    }
+    return result.concat(l < r? left.slice(l): right.slice(r));
 }
