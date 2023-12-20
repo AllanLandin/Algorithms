@@ -90,3 +90,47 @@ function merge(left, right){
     }
     return result.concat(l < r? left.slice(l): right.slice(r));
 }
+
+module.exports.quickSort = function(array){
+    return quick(array, 0, array.length - 1);
+}
+
+function quick(array, left, right){
+    const {length} = array
+    if (length > 1){
+       let index = partition(array, left, right)
+       
+       if (left < index - 1){
+           quick(array, left, index - 1)
+       }
+       if (index < right){
+           quick(array, index, right)
+       }
+       
+    } 
+    return array;
+}
+
+function partition(array, left, right){
+    let pivot = array[Math.floor((left + right) / 2)]
+    let l = left;
+    let r = right;
+    
+    while (l <= r){
+        while (array[l] < pivot){
+            l++
+        }
+        while (array[r] > pivot){
+            r--;
+        }
+    
+        if (l <= r){
+            let temp = array[l];
+            array[l] = array[r];
+            array[r] = temp
+            l++;
+            r--;
+        }
+    }
+    return l;
+}
