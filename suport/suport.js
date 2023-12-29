@@ -1,4 +1,4 @@
-function createArray(len){
+function createArray(len = 10){
     let array = [];
     for (let i = 0; i < len; i++){
         let randomN = Math.floor(Math.random() * 1000)
