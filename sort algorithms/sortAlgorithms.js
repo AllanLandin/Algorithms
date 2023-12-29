@@ -21,7 +21,7 @@ exports.bubbleSortImproved = function (array){
             }
         }
     }
-    return array;
+    return array ;
 }
 
 exports.selectionSort = function(array){
